@@ -1,0 +1,8 @@
+#! /bin/bash
+
+docker run -it \
+    --rm --name=tzg_server \
+    --net="host" \
+    --env-file="$(dirname $(pwd))/.env" \
+    -v $(dirname $(pwd)):/tzg_server \
+    product/tzg_server:latest
