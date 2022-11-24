@@ -31,7 +31,12 @@ class Config(object):
     APP_KEY = HostApp.APP_KEY 
     #uri db
     
-    SQLALCHEMY_DATABASE_URI = '{0}://{1}:{2}@{3}:{4}/{5}'.format(DB_TYPE, DB_USERNAME, DB_PASSWORD, DB_HOSTNAME, DB_ṔORT,        DB_NAME)
+    SQLALCHEMY_DATABASE_URI = "{0}://{1}:{2}@{3}:{4}/{5}".format(DB_TYPE, DB_USERNAME, DB_PASSWORD, DB_HOSTNAME, DB_ṔORT,        DB_NAME)
+    if(SQLALCHEMY_DATABASE_URI == "/postgres1.1copg2"):
+        print("let's go!!")
+    else:
+        print("Fail!!")
+        print(SQLALCHEMY_DATABASE_URI)
     
     # settings gunicorn
     

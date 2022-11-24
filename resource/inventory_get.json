@@ -1,0 +1,47 @@
+{
+    "data_list": [], 
+    "data_object": {
+        "data": [
+            {
+                "creation_date": "2022-11-24", 
+                "deleted_at": "None", 
+                "description": "not get item", 
+                "id": "1", 
+                "modification_date": "None", 
+                "name": "test1", 
+                "qr_file_path": "path/local/item.item"
+                }, 
+                {
+                    "creation_date": "2022-11-24", 
+                    "deleted_at": "None", 
+                    "description": "not get item", 
+                    "id": "2", 
+                    "modification_date": "None", 
+                    "name": "test1", 
+                    "qr_file_path": "path/local/item.item"
+                    }, 
+                {
+                    "creation_date": "2022-11-24", 
+                    "deleted_at": "None", 
+                    "description": "not get item", 
+                    "id": "3", 
+                    "modification_date": "None", 
+                    "name": "test1", 
+                    "qr_file_path": "path/local/item.item"
+                    }
+                ], 
+            "headers": [
+                {"text": "id","value": "id"}, 
+                {"text": "creation_date", "value": "creation_date"}, 
+                {"text": "modification_date", "value": "modification_date"}, 
+                {"text": "name", "value": "name"}, 
+                {"text": "description", "value": "description"}, 
+                {"text": "qr_file_path", "value": "qr_file_path"}, 
+                {"text": "deleted_at", "value": "deleted_at"}
+                ]
+            }, 
+            "is_ok": null, 
+            "message": null, 
+            "name_autor": "inventory", 
+            "status": null
+}
