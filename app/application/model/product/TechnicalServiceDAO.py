@@ -18,3 +18,18 @@ class TechnicalServiceDAO(db.Model):
     controlTechnicalServiceDAO_id = db.Column(db.Integer, db.ForeignKey('control_technical_service.id'))
     
     deleted_at = db.Column(db.Date, onupdate=_get_date) 
+
+        
+    def getAll():
+        #return db.session.query(InventoryDAO).all()
+        return [technical.__dict__ for technical in db.session.query(TechnicalServiceDAO).all()]
+       
+    def create(obj):
+        db.session.add(obj)
+        db.session.commit()
+        return getObject(obj)    
+
+        
+    def get(id):
+	    return db.session.query(TechnicalServiceDAO).filter_by(id = id).first()
+    

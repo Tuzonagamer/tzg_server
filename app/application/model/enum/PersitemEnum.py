@@ -41,7 +41,24 @@ class PersitemEnum(db.Model):
 
     def findPersistemByDiscriminator(discriminator):
         return db.session.query(PersitemEnum).filter(discriminator == discriminator).all()
-
+    
+    # get columns by entity
     def getColumnsByEntityName(obj):
         return [column.name for column in inspect(obj).c]
 
+    #  return dict objects
+    def getAll():
+        #return db.session.query(InventoryDAO).all()
+        return [persistenm.__dict__ for persistenm in db.session.query(PersitemEnum).all()]
+
+        
+    def get(id):
+	    return db.session.query(PersitemEnum).filter_by(id = id).first()
+        
+
+    def getObjectByValues(discriminator, field, label):
+        return db.session.query(PersitemEnum).filter_by(
+            discriminator=discriminator,
+            field=field,
+            label=label,
+            ).first()

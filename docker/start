@@ -1,8 +1,9 @@
 #! /bin/bash
 
 docker run -it \
-    --rm --name=tzg_server \
+    --rm --name=tzpg_server \
     --net="host" \
     --env-file="$(dirname $(pwd))/.env" \
-    -v $(dirname $(pwd)):/tzg_server \
-    product/tzg_server:latest
+    -v $(dirname $(pwd)):/tzpg_server \
+    tzpg/server:latest
+ 

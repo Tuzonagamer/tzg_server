@@ -26,3 +26,6 @@ class Inventory():
     #with delete registrys by any user.    
     def getAllInventory(self):
         self.response.object_ = self.controler.getAll()
+    
+    def create(self, obj):
+        pass

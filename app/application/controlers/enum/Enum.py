@@ -22,6 +22,13 @@ class Enum():
                 enums.append(self.create(discriminator, key, key ))
         return enums
 
+    def validatePersistemObject(self, discriminator, field, label ):
+        object = None
+        object = self.manager.getObjectByValues(discriminator, field, label)
+        if(object == None):
+            object = self.create(discriminator, field, label )
+        return object
+
     def create(self, discriminator_, field_, label_):
         obj = PersitemEnum(creation_date=_get_date(),
         modification_date=None, 
@@ -31,3 +38,8 @@ class Enum():
         show=True,
         deleted_at=None)
         return self.manager.create(obj)
+    
+        
+    def getAll():
+        #return db.session.query(InventoryDAO).all()
+        return [inventory.__dict__ for inventory in db.session.query(InventoryDAO).all()]

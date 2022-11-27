@@ -25,3 +25,8 @@ class InvoiceDAO(db.Model):
 
     def getAll():
         pass#return db.session.query(WorkerDAO).all()
+
+    def create(obj):
+        db.session.add(obj)
+        db.session.commit()
+        return getObject(obj)            

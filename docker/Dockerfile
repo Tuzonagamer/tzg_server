@@ -44,8 +44,8 @@ RUN pip install pip --upgrade  && \
     pip install gunicorn
 
 RUN echo "America/Bogota" > /etc/timezone
-RUN mkdir /tzg_server
-WORKDIR /tzg_server
+RUN mkdir /tzpg_server
+WORKDIR /tzpg_server
 
 #Permisos para gunicorn
 #RUN chown -R flask:flaskgroup /metadataimagemicroservice
@@ -59,4 +59,4 @@ ENV FLASK_APP app/__init__.py
 EXPOSE 5000
 EXPOSE 5432
 ENTRYPOINT [ "gunicorn", "-c", "gunicornconfig.py"]
-CMD ["wsgi:app", "/tzg_server"]
+CMD ["wsgi:app", "/tzpg_server"]

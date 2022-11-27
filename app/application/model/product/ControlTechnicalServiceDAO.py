@@ -18,3 +18,19 @@ class ControlTechnicalServiceDAO(db.Model):
     state = db.Column(db.String)
     
     deleted_at = db.Column(db.Date, onupdate=_get_date)
+
+
+        
+    def getAll():
+        #return db.session.query(InventoryDAO).all()
+        return [ctrtchnicalser.__dict__ for ctrtchnicalser in db.session.query(ControlTechnicalServiceDAO).all()]
+       
+    def create(obj):
+        db.session.add(obj)
+        db.session.commit()
+        return getObject(obj)    
+
+        
+    def get(id):
+	    return db.session.query(ControlTechnicalServiceDAO).filter_by(id = id).first()
+    

@@ -15,5 +15,21 @@ class PriceInventoryDAO(db.Model):
 
     inventory_id =  db.Column(db.Integer, db.ForeignKey('inventory.id'))
     price_id =  db.Column(db.Integer, db.ForeignKey('price.id'))
+    version_description = db.Column(db.String)
     
     deleted_at = db.Column(db.Date, onupdate=_get_date)
+
+    
+    def getAll():
+        #return db.session.query(InventoryDAO).all()
+        return [price.__dict__ for price in db.session.query(PriceInventoryDAO).all()]
+       
+    def create(obj):
+        db.session.add(obj)
+        db.session.commit()
+        return getObject(obj)    
+
+        
+    def get(id):
+	    return db.session.query(PriceInventoryDAO).filter_by(id = id).first()
+    
