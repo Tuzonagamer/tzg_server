@@ -1,0 +1,30 @@
+echo "# General Settings 
+nameAPP=server
+versionApp=1.0
+
+
+# run on...
+hostAPP=localhost
+portAPP=8080
+APP_DEBUG=true
+APP_KEY=secret
+APP_TIME_OUT=10000
+APP_WORKERS=2
+
+# setting enviroment db settings
+
+hostDB=192.168.1.1
+portDB=5432
+
+# credentials
+userDB=postgres
+passDB=postgres
+
+# specification
+schemaDB=tzg
+dataBaseNameDB=postgres
+
+# settings DB
+encodingDB=enconding
+typeDB=postgres+psycopg2
+socketDB=None" >> .env
