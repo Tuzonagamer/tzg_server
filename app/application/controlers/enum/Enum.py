@@ -15,11 +15,12 @@ class Enum():
         return self.validatePersistem(enums, entity, discriminator)
 
     def validatePersistem(self, enums, entity, discriminator):
-        if(len(enums) == 0):
+        if(len(enums) <= 1):
             keys = self.manager.getColumnsByEntityName(entity)
             print(keys)
             for key in keys:
-                enums.append(self.create(discriminator, key, key ))
+                obj = self.create(discriminator, key, key )
+                enums.append({"text":obj.label, "value":obj.field})
         return enums
 
     def validatePersistemObject(self, discriminator, field, label ):
