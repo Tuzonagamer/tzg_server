@@ -41,4 +41,7 @@ class InventoryCT():
             "value":obj.field
         }
         return {"data":report, "headers":self.enum.getHeadersByDiscriminator("inventory", InventoryDAO), "entity":entity}
-        
+    
+    # add inventory only
+    def add(self, object):
+        return self.create(self.build(object["NAME"], object["SERIAL"], object["DESCRIPTION"], object["QRPATH"]))    

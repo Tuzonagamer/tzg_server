@@ -1,5 +1,8 @@
 from app.application.model import db
 
+def getObject(obj):   
+        return db.session.query(InventoryDAO).filter_by(name = obj.name, serial_manual=obj.serial_manual, description=obj.description, qr_file_path=obj.qr_file_path).first()
+
 def _get_date():
 	return datetime.datetime.now()
 

@@ -2,6 +2,9 @@ from app.application.model import db
 def _get_date():
 	return datetime.datetime.now()
 
+def getObject(obj):   
+        return db.session.query(InventoryDAO).filter_by(enum = obj.enum, name=obj.name, value=obj.value).first()
+
 class PriceDAO(db.Model):
     __tablename__ = 'price'
     """model entity orker
@@ -19,11 +22,12 @@ class PriceDAO(db.Model):
 
     def getAll():
         #return db.session.query(InventoryDAO).all()
-        return [inventory.__dict__ for inventory in db.session.query(PriceDAO).all()]
+        return [price.__dict__ for price in db.session.query(PriceDAO).all()]
 
     def get(id):
 	    return db.session.query(PriceDAO).filter_by(id = id).first()	 
 
+    
     def create(obj):
         db.session.add(obj)
         db.session.commit()
