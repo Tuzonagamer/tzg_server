@@ -28,7 +28,7 @@ class Price:
             :return: render_template index.html
             """
             req = request.get_json()
-            self.response.alertCallContext( "/")
+            self.response.alertCallContext( "/create")
             self.response.restarObject() 
             self.create(req)
 
@@ -38,4 +38,11 @@ class Price:
         self.response.object_ = self.controler.getAll()
     
     def create(self, obj):
-        self.response.object_ = self.controler.add(obj["descriminator"], obj["code"], obj["value"] )
+        trassaction = self.controler.add(obj["descriminator"], obj["code"], obj["value"], obj["value"], obj["detail"] )
+        self.response.object_ = trassaction[0]
+        if(trassaction[1]["act"]):
+            self.response.status = 200
+        else:
+            self.response.status = 201     
+        self.response.is_ok = trassaction[1]["act"]
+        self.response.message = trassaction[1]["message"]

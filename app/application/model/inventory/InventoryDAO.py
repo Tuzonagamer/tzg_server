@@ -32,10 +32,19 @@ class InventoryDAO(db.Model):
         return db.session.query(InventoryDAO).filter_by(serial_manual = serial).first()
 
     def create(obj):
-        db.session.add(obj)
-        db.session.commit()
-        return getObject(obj)    
-
+        
+        ans_obj = {"message":None, "act":None}
+        
+        if(getObject(obj) == None): 
+            db.session.add(obj)
+            db.session.commit()
+            ans_obj["message"] = "Registro Exitoso"
+            ans_obj["act"] = True
+        else:
+            ans_obj["message"] = "Registro Existente"
+            ans_obj["act"] = False 
+            
+        return getObject(obj).__dict__ , ans_obj
         
     def get(id):
 	    return db.session.query(InventoryDAO).filter_by(id = id).first()

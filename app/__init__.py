@@ -8,7 +8,7 @@ print("init {0}...".format(Config.APP_NAME))
 try:
 	app = Flask(__name__)
 	CORS(app)
-	app.debug = True
+	app.debug = Config.APP_DEBUG
 
 
 
@@ -47,4 +47,4 @@ print("start {0}...\n launch: on \nhost:{1}\nport:{2}".format(
 
 
 if __name__ == '__main__':
-    app.run(host = "0.0.0.0")
+    app.run(host = "0.0.0.0", debug =Config.APP_DEBUG)

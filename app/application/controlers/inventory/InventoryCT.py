@@ -44,4 +44,10 @@ class InventoryCT():
     
     # add inventory only
     def add(self, object):
-        return self.create(self.build(object["NAME"], object["SERIAL"], object["DESCRIPTION"], object["QRPATH"]))    
+        object = self.create(self.build(object["NAME"], object["SERIAL"], object["DESCRIPTION"], object["QRPATH"]))
+        row = {}
+        for key in object[0].keys():
+            if(key != "_sa_instance_state"):
+                row[key] = str(object[0][key])
+        return row, object[1]
+            
