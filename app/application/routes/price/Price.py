@@ -38,7 +38,8 @@ class Price:
         self.response.object_ = self.controler.getAll()
     
     def create(self, obj):
-        trassaction = self.controler.add(obj["descriminator"], obj["code"], obj["value"], obj["value"], obj["detail"] )
+        print(obj)
+        trassaction = self.controler.add(obj["enum"], obj["name"], obj["value"])
         self.response.object_ = trassaction[0]
         if(trassaction[1]["act"]):
             self.response.status = 200

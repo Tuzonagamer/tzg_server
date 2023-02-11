@@ -9,8 +9,13 @@ class Enum():
     
     def getHeadersByDiscriminator(self, discriminator, entity):
         enums = []        
-        for obj in self.manager.findPersistemByDiscriminator(discriminator):
-            enums.append({"text":obj.label, "value":obj.field})
+
+        listobj =  self.manager.findPersistemByDiscriminator(discriminator)       
+        #print(" \n {} \n {}".format(listobj, discriminator))
+        for obj in listobj:
+            # print({"text":obj.label, "value":obj.field})
+            if(obj.show):
+                enums.append({"text":obj.label, "value":obj.field})
 
         return self.validatePersistem(enums, entity, discriminator)
 
@@ -28,6 +33,7 @@ class Enum():
         object = self.manager.getObjectByValues(discriminator, field, label)
         if(object == None):
             object = self.create(discriminator, field, label )
+        print(object)    
         return object
 
     def create(self, discriminator_, field_, label_):

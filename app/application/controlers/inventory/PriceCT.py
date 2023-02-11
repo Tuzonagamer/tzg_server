@@ -32,7 +32,7 @@ class PriceCT:
             creation_date=_get_date(),
             modification_date=None,
             inventory_id =  inventory["id"],
-            price_id = price["id"],
+            price_id = price["id"], 
             version_description = price["value"],
             deleted_at=None
         )
@@ -60,7 +60,7 @@ class PriceCT:
     def create(self, obj):
         return self.manager.create(obj) 
         
-    def add(self, descriminator, code, value, price, description):
+    def add(self, descriminator, code, value):
         row = {}
         obj = self.create(self.build(descriminator, code, value))
         for key in obj[0].keys():

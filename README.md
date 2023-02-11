@@ -49,3 +49,8 @@ socketDB=None
 # by run execute command in root folder
 - flask run <- on case execute on local machine out local lan
 - flask run --host 127.0.0.1 --port 5000 <- on case execute without and with local machine and local lan.
+
+
+
+# accound support
+-   tuzonapcgamersppt@gmail.com
