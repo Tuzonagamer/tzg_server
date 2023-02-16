@@ -48,4 +48,11 @@ class InventoryDAO(db.Model):
         
     def get(id):
 	    return db.session.query(InventoryDAO).filter_by(id = id).first()
+
+    def getDetail(id, PriceDAO, PriceInventoryDAO):
+        return db.session.query(
+			InventoryDAO, PriceDAO
+			).filter(PriceDAO.id == PriceInventoryDAO.price_id
+			).filter(InventoryDAO.id == PriceInventoryDAO.inventory_id
+			).filter(InventoryDAO.id == id).first()
     

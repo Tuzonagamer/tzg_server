@@ -6,7 +6,9 @@ def _get_date():
 class Enum():
     def __init__(self):
         self.manager = PersitemEnum
-    
+    def build(self, obj):
+        return 
+
     def getHeadersByDiscriminator(self, discriminator, entity):
         enums = []        
 
@@ -50,3 +52,27 @@ class Enum():
     def getAll():
         #return db.session.query(InventoryDAO).all()
         return [inventory.__dict__ for inventory in db.session.query(InventoryDAO).all()]
+
+    
+    def update(self, obj ):
+        id = db.Column(db.Integer, primary_key = True)
+        creation_date = db.Column(db.Date, onupdate=_get_date)
+        modification_date = db.Column(db.Date, onupdate=_get_date)
+
+        discriminator = db.Column(db.String)
+        field = db.Column(db.String)
+        label = db.Column(db.String)
+        show = db.Column(db.Boolean)
+
+        deleted_at = db.Column(db.Date, onupdate=_get_date)
+        return self.manager.create(obj)
+
+    def joinToObj(self, arr):
+        object = {}
+        for obj in arr:
+            object[obj.__class__.__name__.replace("DAO","")] = {}
+            for key in obj.__dict__:
+                if(key != "_sa_instance_state"):
+                    object[obj.__class__.__name__.replace("DAO","")][key] = obj.__dict__[key]
+        
+        return object 

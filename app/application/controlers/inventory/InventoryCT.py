@@ -1,5 +1,10 @@
 from app.application.model import InventoryDAO
 from app.application.controlers.enum.Enum import Enum
+from app.application.model import PriceDAO
+from app.application.model import PriceInventoryDAO
+
+
+
 import datetime
 
 def _get_date():
@@ -50,4 +55,10 @@ class InventoryCT():
             if(key != "_sa_instance_state"):
                 row[key] = str(object[0][key])
         return row, object[1]
-            
+
+    def getInventoryDetaily(self, id):
+        object = {}
+        arr = self.manager.getDetail(id, PriceDAO, PriceInventoryDAO)
+        object = self.enum.joinToObj(arr)
+        
+        return object, None        

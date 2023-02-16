@@ -2,45 +2,33 @@ from flask import render_template, flash, redirect, url_for
 from flask import jsonify
 from flask import Flask, request, Response, json
 
-from app.application.controlers.inventory.InventoryCT import InventoryCT
-from app.application.controlers.inventory.PriceCT import PriceCT
+
+from app.application.controlers.enum.Enum import Enum as EnumCT
+
 from app.application.routes.tools.ResponseContainer import ResponseContainer
 
-class Inventory():
+class Enum():
     def __init__(self, app):
-        self.controler = InventoryCT()
-        self.controlerPrice = PriceCT()
+        self.controler = EnumCT()
+        
         self.response = ResponseContainer(self.__class__.__name__.lower())
         print('/{0}/'.format(self.__class__.__name__.lower()) )
 
         
         @app.route('/{0}/'.format(self.__class__.__name__.lower()), methods=['GET'])
-        def InventoryIndex():
+        def EnumIndex():
             """container 
             :return: render_template index.html
             """
             self.response.alertCallContext( "/")
             self.response.restarObject() 
-            self.getAllInventory()
+            self.getAllEnums()
+            
 
             return Response(response=json.dumps(self.response.getObject()), status=self.response.status, mimetype="application/json")
         
-
-        
-        @app.route('/{0}/<id>'.format(self.__class__.__name__.lower()), methods=['GET'])
-        def InventoryIndexGet(id):
-            """container 
-            :return: render_template index.html
-            """
-            self.response.alertCallContext( "/")
-            self.response.restarObject() 
-            #print(id)
-            self.get(id)
-
-            return Response(response=json.dumps(self.response.getObject()), status=self.response.status, mimetype="application/json")
-        
-        @app.route('/{0}/create'.format(self.__class__.__name__.lower()), methods=['POST'])
-        def InventoryAdd():
+        @app.route('/{0}/update'.format(self.__class__.__name__.lower()), methods=['POST'])
+        def EnumAdd():
             """container 
             :return: render_template index.html
             """
@@ -52,16 +40,10 @@ class Inventory():
             return Response(response=json.dumps(self.response.getObject()), status=self.response.status, mimetype="application/json")
 
     #with delete registrys by any user.    
-    def getAllInventory(self):
+    def getAllEnums(self):
         self.response.object_ = self.controler.getAll()
-
-    def get(self, id):
-        object = self.controler.getInventoryDetaily(id)
-        self.response.object_ = object[0]
-        self.response.message  = object[1]
-        self.response.status = 200
-
-    def create(self, obj):
+    
+    def update(self, obj):
         # se gestiona la creacion del objeto         
         trassaction = self.controler.add(obj )
         
